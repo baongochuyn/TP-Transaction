@@ -17,34 +17,8 @@
 </template>
 
 <script lang="ts">
-import { def } from '@vue/shared';
 
 export default {
-    props: {   // [itemModify, setItemModify] = useState(null);
-        itemModify:{
-            type: Object,
-            defaul: null
-        }
-    },
-    watch:{
-        itemModify(){
-            if(this.itemModify){
-                this.spending = {
-                id:this.itemModify.id,
-                description: this.itemModify.description,
-                date: Intl.DateTimeFormat("en-CA").format(this.itemModify.date),
-                amount: this.itemModify.amount
-            }
-            }else{
-                this.spending = {
-                id:Math.floor(Math.random()*100),
-                description: "",
-                date: "",
-                amount: ""
-            }
-            }
-        }
-    },
     methods:{
         clickAdd(){
             if (/\d{4}-\d{2}-\d{2}/.test(this.spending.date) === false) {
