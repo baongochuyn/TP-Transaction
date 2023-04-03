@@ -6,7 +6,6 @@
           <th>Description</th>
           <th>Date</th>
           <th>Montant</th>
-          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -15,10 +14,7 @@
           <td>{{ transaction.description }}</td>
           <td>{{ ConverDate(transaction.date)  }}</td>
           <td>{{ CoverAmount(transaction.amount) }}</td>
-          <td>
-            <button @click="clickDelete(transaction)">Delete</button>
-            <button @click="clickModify(transaction)">Modify</button>
-          </td>
+
         </tr>
       </tbody>
       <tfoot>
@@ -55,26 +51,6 @@ export default defineComponent ({
         CoverAmount(amount){
         return Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(BigInt(amount));
         },
-        clickDelete(itemDelete: any){
-        //console.log(itemDelete.id)
-      
-            for(let i = 0; i < this.transactions.length; i++){
-                if(this.transactions[i].id == itemDelete.id){    
-                    this.transactions.splice(i,1)
-                }
-            }
-        },
-        clickModify(itemModify){
-            
-            this.item = itemModify
-            console.log(this.item)
-            // for(let i =0; i<this.transactions.length ; i++){
-            //     if(this.transactions[i].id == itemModify.id){
-            //         this.transactions[i] = itemModify
-            //     }
-            // }
-            this.$emit("modify", this.item)
-        }
     },  
     computed: { // var a = stateA + stateB <div>{a}</div>
         total() {
