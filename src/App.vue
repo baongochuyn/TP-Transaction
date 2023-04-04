@@ -1,9 +1,10 @@
 <template>
   <div>
     <p>Total:{{ total }}</p>
-    <Spending @save="clickAdd" />
+    <!-- <Spending @save="clickAdd" /> -->
     <h1>Liste des transactions</h1>
-    <TableTransaction :transactions="transactions" />
+    <!-- <TableTransaction :transactions="transactions" /> -->
+    <RouterView></RouterView>
   </div>
 </template>
 
@@ -11,6 +12,8 @@
 import { reactive, ref, computed } from 'vue'
 import Spending from './components/Spending.vue'
 import TableTransaction from './components/TableTransaction.vue'
+import { provide } from 'vue'
+
 //console.log(transactions);
 export default {
   components: {
@@ -35,6 +38,8 @@ export default {
       },
       { id: 5, description: 'Dépôt en espèces', date: new Date('2023-3-3'), amount: BigInt(500) }
     ])
+
+    provide('transactions', transactions)
 
     const clickAdd = (itemAdd: any) => {
       transactions.push({

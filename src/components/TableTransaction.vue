@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import type { PropType } from 'vue'
+import { inject, computed } from 'vue'
 
 interface Transaction {
   id: number
@@ -31,22 +31,23 @@ interface Transaction {
 }
 
 export default defineComponent({
-  props: {
-    transactions: {
-      type: Array as PropType<Transaction[]>,
-      required: true
-    }
-  },
-  setup(props) {
+  setup() {
+    const transactions = inject<Transaction[]>('transactions')
+
+    console.log(transactions)
+
     const convertDate = (date: number | Date | undefined) => {
       return Intl.DateTimeFormat('fr-FR').format(date)
     }
 
     const coverAmount = (amount: bigint) => {
+      console.log(transactions)
+      console.log(amount)
       return Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(amount)
     }
 
     return {
+      transactions,
       convertDate,
       coverAmount
     }
