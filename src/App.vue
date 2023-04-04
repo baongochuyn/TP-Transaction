@@ -8,54 +8,51 @@
 </template>
 
 <script lang="ts">
+import { reactive, ref, computed } from 'vue'
 import Spending from './components/Spending.vue'
 import TableTransaction from './components/TableTransaction.vue'
 //console.log(transactions);
 export default {
   components: {
-    Spending: Spending,
-    TableTransaction: TableTransaction
+    Spending,
+    TableTransaction
   },
-  methods: {
-    clickAdd(itemAdd: any) {
-      this.transactions.push({
-        id: Math.max(...this.transactions.map((t) => t.id)) + 1,
+  setup() {
+    const transactions = reactive([
+      { id: 1, description: 'Salaire', date: new Date('2023-1-1'), amount: BigInt(1000) },
+      {
+        id: 2,
+        description: 'Vente de produit',
+        date: new Date('2023-2-1'),
+        amount: BigInt(-500)
+      },
+      { id: 3, description: 'Remboursement', date: new Date('2023-3-1'), amount: BigInt(200) },
+      {
+        id: 4,
+        description: 'Paiement mensuel',
+        date: new Date('2023-3-2'),
+        amount: BigInt(-800)
+      },
+      { id: 5, description: 'Dépôt en espèces', date: new Date('2023-3-3'), amount: BigInt(500) }
+    ])
+
+    const clickAdd = (itemAdd: any) => {
+      transactions.push({
+        id: Math.max(...transactions.map((t) => t.id)) + 1,
         description: itemAdd.description,
         date: new Date(itemAdd.date),
         amount: BigInt(itemAdd.amount)
       })
     }
-  },
-  data() {
+
+    const totalSpending = computed(() => {
+      const value = transactions.reduce((acc, transaction) => acc + transaction.amount, BigInt(0))
+      return value
+    })
     return {
-      transactions: [
-        { id: 1, description: 'Salaire', date: new Date('2023-1-1'), amount: BigInt(1000) },
-        {
-          id: 2,
-          description: 'Vente de produit',
-          date: new Date('2023-2-1'),
-          amount: BigInt(-500)
-        },
-        { id: 3, description: 'Remboursement', date: new Date('2023-3-1'), amount: BigInt(200) },
-        {
-          id: 4,
-          description: 'Paiement mensuel',
-          date: new Date('2023-3-2'),
-          amount: BigInt(-800)
-        },
-        { id: 5, description: 'Dépôt en espèces', date: new Date('2023-3-3'), amount: BigInt(500) }
-      ]
-    }
-  },
-  computed: {
-    // var a = stateA + stateB <div>{a}</div>
-    total() {
-      //return this.transactions.reduce((acc, transaction) => acc + transaction.amount, BigInt(0));
-      let totalSpending = 0n
-      for (let i = 0; i < this.transactions.length; i++) {
-        totalSpending += BigInt(this.transactions[i].amount)
-      }
-      return BigInt(totalSpending)
+      clickAdd,
+      transactions,
+      total: totalSpending
     }
   }
 }
