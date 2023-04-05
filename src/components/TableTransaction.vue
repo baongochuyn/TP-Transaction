@@ -22,13 +22,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { inject, computed, type Ref } from 'vue'
+import type { Transaction } from '../entities/transaction'
 
-interface Transaction {
-  id: number
-  description: string
-  date: Date
-  amount: bigint
-}
+// interface Transaction {
+//   id: number
+//   description: string
+//   date: Date
+//   amount: bigint
+// }
 
 export default defineComponent({
   setup() {

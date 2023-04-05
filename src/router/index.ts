@@ -11,8 +11,8 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/add',
-      name: 'add',
+      path: '/new-transaction',
+      name: 'new-transaction',
       component: FormView
     }
   ]

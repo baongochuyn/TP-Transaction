@@ -9,13 +9,6 @@ import Spending from '@/components/Spending.vue'
 import { inject, computed, type Ref } from 'vue'
 import router from '@/router'
 
-interface Transaction {
-  id: number
-  description: string
-  date: Date
-  amount: bigint
-}
-
 export default defineComponent({
   components: {
     Spending
