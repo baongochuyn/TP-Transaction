@@ -1,4 +1,3 @@
-import SpendingVue from '@/components/Spending.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import FormView from '../view/FormView.vue'
 import HomeView from '../view/HomeView.vue'
@@ -14,11 +13,6 @@ const router = createRouter({
     {
       path: '/add',
       name: 'add',
-      component: SpendingVue
-    },
-    {
-      path: '/form/:id',
-      name: 'form',
       component: FormView
     }
   ]

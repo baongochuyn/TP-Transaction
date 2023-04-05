@@ -1,11 +1,14 @@
 <template>
-  <div>Hello Form</div>
+  <RouterLink to="/"><button>Annuler</button></RouterLink>
+  <Spending @save="onNewTransaction" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import type { PropType } from 'vue'
-import { inject } from 'vue'
+import Spending from '@/components/Spending.vue'
+import { inject, computed, type Ref } from 'vue'
+import router from '@/router'
+
 interface Transaction {
   id: number
   description: string
@@ -14,16 +17,23 @@ interface Transaction {
 }
 
 export default defineComponent({
-  props: {
-    transactions: {
-      type: Array as PropType<Transaction[]>,
-      required: true
-    }
+  components: {
+    Spending
   },
   setup(props) {
-    const a = inject['transactions']
-    console.log(a)
-    return {}
+    //const { addTransaction } = inject<{ addTransaction: (itemAdd: any) => void }>('transactions') ?? { addTransaction: () => { throw new Error('Cannot find addTransaction') } }
+
+    const addTransaction = inject<{ addTransaction: (itemAdd) => void }>(
+      'transactions'
+    )!.addTransaction
+    const onNewTransaction = (itemAdd: any) => {
+      addTransaction(itemAdd)
+      router.push('/')
+    }
+    return {
+      Spending,
+      onNewTransaction
+    }
   }
 })
 </script>

@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { inject, computed } from 'vue'
+import { inject, computed, type Ref } from 'vue'
 
 interface Transaction {
   id: number
@@ -32,10 +32,9 @@ interface Transaction {
 
 export default defineComponent({
   setup() {
-    const transactions = inject<Transaction[]>('transactions')
+    const transactions = inject<{ transactions: Ref<Transaction[]> }>('transactions')!.transactions
 
     console.log(transactions)
-
     const convertDate = (date: number | Date | undefined) => {
       return Intl.DateTimeFormat('fr-FR').format(date)
     }

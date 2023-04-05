@@ -12,7 +12,7 @@
       <label for="">Montant :</label>
       <input v-model="spending.amount" type="number" />
     </div>
-    <button @click="clickAdd" id="btnValider">Add</button>
+    <button @click="onNewTransaction" id="btnValider">Add</button>
   </div>
 </template>
 
@@ -28,8 +28,8 @@ export default defineComponent({
       amount: ''
     })
 
-    const clickAdd = () => {
-      if (/\d{4}-\d{2}-\d{2}/.test(spending.value.date) === false) {
+    const onNewTransaction = () => {
+      if (!/\d{4}-\d{2}-\d{2}/.test(spending.value.date)) {
         return false
       }
 
@@ -41,9 +41,10 @@ export default defineComponent({
         return false
       }
 
-      //send object "spending" to parents
+      // send object "spending" to parents
       emit('save', spending.value)
-      //reset input = 0
+
+      // reset input = 0
       spending.value = {
         id: Math.floor(Math.random() * 100),
         description: '',
@@ -54,7 +55,7 @@ export default defineComponent({
 
     return {
       spending,
-      clickAdd
+      onNewTransaction
     }
   }
 })

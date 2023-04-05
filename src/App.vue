@@ -1,8 +1,7 @@
 <template>
   <div>
-    <p>Total:{{ total }}</p>
+    <p>Solde du compte : {{ total }}</p>
     <!-- <Spending @save="clickAdd" /> -->
-    <h1>Liste des transactions</h1>
     <!-- <TableTransaction :transactions="transactions" /> -->
     <RouterView></RouterView>
   </div>
@@ -23,25 +22,13 @@ export default {
   setup() {
     const transactions = reactive([
       { id: 1, description: 'Salaire', date: new Date('2023-1-1'), amount: BigInt(1000) },
-      {
-        id: 2,
-        description: 'Vente de produit',
-        date: new Date('2023-2-1'),
-        amount: BigInt(-500)
-      },
+      { id: 2, description: 'Vente de produit', date: new Date('2023-2-1'), amount: BigInt(-500) },
       { id: 3, description: 'Remboursement', date: new Date('2023-3-1'), amount: BigInt(200) },
-      {
-        id: 4,
-        description: 'Paiement mensuel',
-        date: new Date('2023-3-2'),
-        amount: BigInt(-800)
-      },
+      { id: 4, description: 'Paiement mensuel', date: new Date('2023-3-2'), amount: BigInt(-800) },
       { id: 5, description: 'Dépôt en espèces', date: new Date('2023-3-3'), amount: BigInt(500) }
     ])
 
-    provide('transactions', transactions)
-
-    const clickAdd = (itemAdd: any) => {
+    const addTransaction = (itemAdd: any) => {
       transactions.push({
         id: Math.max(...transactions.map((t) => t.id)) + 1,
         description: itemAdd.description,
@@ -50,12 +37,17 @@ export default {
       })
     }
 
+    provide('transactions', {
+      transactions: transactions,
+      addTransaction: addTransaction
+    })
+
     const totalSpending = computed(() => {
       const value = transactions.reduce((acc, transaction) => acc + transaction.amount, BigInt(0))
       return value
     })
     return {
-      clickAdd,
+      addTransaction,
       transactions,
       total: totalSpending
     }
