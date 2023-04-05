@@ -3,6 +3,7 @@ export class Transaction {
     public id: number,
     public description: string,
     public date: Date,
-    public amount: bigint
+    public amount: bigint,
+    public category: string
   ) {}
 }

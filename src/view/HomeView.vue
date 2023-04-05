@@ -1,7 +1,8 @@
 <template>
   <h1>Liste des transactions</h1>
   <TableTransaction />
-  <RouterLink to="/add"><button>Ajouter</button></RouterLink>
+  <RouterLink to="/new-transaction"><button>Ajouter une transaction</button></RouterLink>
+  <RouterLink to="/new-category"><button>Ajouter une catégory</button></RouterLink>
 </template>
 
 <script lang="ts">
