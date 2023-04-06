@@ -1,27 +1,12 @@
 <template>
   <div>
-    <p>Solde du compte : {{}}</p>
     <!-- <Spending @save="clickAdd" /> -->
     <!-- <TableTransaction :transactions="transactions" /> -->
     <RouterView></RouterView>
   </div>
 </template>
 
-<script lang="ts">
-import { reactive, ref, computed } from 'vue'
-import Spending from './components/Spending.vue'
-import TableTransaction from './components/TableTransaction.vue'
-import { provide } from 'vue'
-
-//console.log(transactions);
-export default {
-  components: {
-    Spending,
-    TableTransaction
-  },
-  setup() {}
-}
-</script>
+<script setup lang="ts"></script>
 
 <style>
 table {

@@ -5,19 +5,6 @@
   <RouterLink to="/new-category"><button>Ajouter une catégory</button></RouterLink>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import TableTransaction from '@/components/TableTransaction.vue'
-import { inject, computed, ref } from 'vue'
-
-export default defineComponent({
-  components: {
-    TableTransaction
-  },
-  setup(props) {
-    return {
-      TableTransaction
-    }
-  }
-})
 </script>

@@ -16,49 +16,42 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 
-export default defineComponent({
-  setup(_, { emit }) {
-    const spending = ref({
-      id: Math.floor(Math.random() * 100),
-      description: '',
-      date: '',
-      amount: ''
-    })
-
-    const onNewTransaction = () => {
-      if (!/\d{4}-\d{2}-\d{2}/.test(spending.value.date)) {
-        return false
-      }
-
-      if (typeof spending.value.amount !== 'number') {
-        return false
-      }
-
-      if (spending.value.description.length === 0) {
-        return false
-      }
-
-      // send object "spending" to parents
-      emit('save', spending.value)
-
-      // reset input = 0
-      spending.value = {
-        id: Math.floor(Math.random() * 100),
-        description: '',
-        date: '',
-        amount: ''
-      }
-    }
-
-    return {
-      spending,
-      onNewTransaction
-    }
-  }
+const spending = ref({
+  id: Math.floor(Math.random() * 100),
+  description: '',
+  date: '',
+  amount: ''
 })
+
+const emit = defineEmits(['save'])
+
+const onNewTransaction = () => {
+  if (!/\d{4}-\d{2}-\d{2}/.test(spending.value.date)) {
+    return false
+  }
+
+  if (typeof spending.value.amount !== 'number') {
+    return false
+  }
+
+  if (spending.value.description.length === 0) {
+    return false
+  }
+
+  // send object "spending" to parents
+  emit('save', spending.value)
+
+  // reset input = 0
+  spending.value = {
+    id: Math.floor(Math.random() * 100),
+    description: '',
+    date: '',
+    amount: ''
+  }
+}
 </script>
 
 <style scoped>

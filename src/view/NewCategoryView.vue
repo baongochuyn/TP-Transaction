@@ -2,23 +2,10 @@
   <CategotyForm @new-category="onNewCategory" />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import CategotyForm from '@/components/CategoryForm.vue'
-import { inject, computed, ref } from 'vue'
 
-export default defineComponent({
-  components: {
-    CategotyForm
-  },
-  setup(props) {
-    const onNewCategory = (name) => {
-      console.log(name)
-    }
-    return {
-      CategotyForm,
-      onNewCategory
-    }
-  }
-})
+const onNewCategory = (name) => {
+  console.log(name)
+}
 </script>
