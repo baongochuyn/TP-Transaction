@@ -12,13 +12,20 @@
       <label for="">Montant :</label>
       <input v-model="spending.amount" type="number" />
     </div>
+    <div>
+      <select>
+        <option v-for="(cate, index) in categoryStore" :key="index">{{ cate }}</option>
+      </select>
+    </div>
     <button @click="onNewTransaction" id="btnValider">Add</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useCategoryStore } from '@/stores/category'
 
+const categoryStore = useCategoryStore().category
 const spending = ref({
   id: Math.floor(Math.random() * 100),
   description: '',

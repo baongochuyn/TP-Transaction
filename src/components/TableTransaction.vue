@@ -4,6 +4,7 @@
       <tr>
         <th>ID</th>
         <th>Description</th>
+        <th>Catégory</th>
         <th>Date</th>
         <th>Montant</th>
       </tr>
@@ -12,6 +13,7 @@
       <tr v-for="(transaction, index) in transactions" :key="index">
         <td>{{ transaction.id }}</td>
         <td>{{ transaction.description }}</td>
+        <td>{{ transaction.category }}</td>
         <td>{{ convertDate(transaction.date) }}</td>
         <td>{{ coverAmount(transaction.amount) }}</td>
       </tr>
