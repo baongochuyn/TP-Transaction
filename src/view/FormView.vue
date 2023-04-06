@@ -8,19 +8,22 @@ import { defineComponent } from 'vue'
 import Spending from '@/components/Spending.vue'
 import { inject, computed, type Ref } from 'vue'
 import router from '@/router'
+import { useTransactionStore } from '@/stores/transaction'
 
 export default defineComponent({
   components: {
     Spending
   },
-  setup(props) {
+  setup() {
     //const { addTransaction } = inject<{ addTransaction: (itemAdd: any) => void }>('transactions') ?? { addTransaction: () => { throw new Error('Cannot find addTransaction') } }
 
-    const addTransaction = inject<{ addTransaction: (itemAdd) => void }>(
-      'transactions'
-    )!.addTransaction
+    // const addTransaction = inject<{ addTransaction: (itemAdd) => void }>(
+    //   'transactions'
+    // )!.addTransaction
+    const transactionStore = useTransactionStore()
+
     const onNewTransaction = (itemAdd: any) => {
-      addTransaction(itemAdd)
+      transactionStore.addTransaction(itemAdd)
       router.push('/')
     }
     return {

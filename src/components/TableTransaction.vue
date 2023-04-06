@@ -19,38 +19,17 @@
   </table>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { inject, computed, type Ref } from 'vue'
-import type { Transaction } from '../entities/transaction'
+<script setup lang="ts">
+import { useTransactionStore } from '@/stores/transaction'
 
-// interface Transaction {
-//   id: number
-//   description: string
-//   date: Date
-//   amount: bigint
-// }
+const transactionsStore = useTransactionStore()
+const transactions = transactionsStore.transaction
 
-export default defineComponent({
-  setup() {
-    const transactions = inject<{ transactions: Ref<Transaction[]> }>('transactions')!.transactions
+const convertDate = (date: number | Date | undefined) => {
+  return Intl.DateTimeFormat('fr-FR').format(date)
+}
 
-    console.log(transactions)
-    const convertDate = (date: number | Date | undefined) => {
-      return Intl.DateTimeFormat('fr-FR').format(date)
-    }
-
-    const coverAmount = (amount: bigint) => {
-      console.log(transactions)
-      console.log(amount)
-      return Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(amount)
-    }
-
-    return {
-      transactions,
-      convertDate,
-      coverAmount
-    }
-  }
-})
+const coverAmount = (amount: bigint) => {
+  return Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(amount)
+}
 </script>
