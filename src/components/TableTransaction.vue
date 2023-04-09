@@ -26,7 +26,7 @@ import { useTransactionStore } from '@/stores/transaction'
 
 const transactionsStore = useTransactionStore()
 const transactions = transactionsStore.transaction
-
+console.log(transactions)
 const convertDate = (date: number | Date | undefined) => {
   return Intl.DateTimeFormat('fr-FR').format(date)
 }

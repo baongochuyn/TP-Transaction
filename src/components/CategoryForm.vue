@@ -18,5 +18,6 @@ const name = ref('')
 const emit = defineEmits(['newCategory'])
 const onSubmit = () => {
   emit('newCategory', name.value)
+  name.value = ''
 }
 </script>

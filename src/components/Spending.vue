@@ -13,8 +13,10 @@
       <input v-model="spending.amount" type="number" />
     </div>
     <div>
-      <select>
-        <option v-for="(cate, index) in categoryStore" :key="index">{{ cate }}</option>
+      <select v-model="spending.category">
+        <option v-for="(cate, index) in categoryStore" :key="index" v-bind:value="cate">
+          {{ cate }}
+        </option>
       </select>
     </div>
     <button @click="onNewTransaction" id="btnValider">Add</button>
@@ -27,12 +29,11 @@ import { useCategoryStore } from '@/stores/category'
 
 const categoryStore = useCategoryStore().category
 const spending = ref({
-  id: Math.floor(Math.random() * 100),
+  category: '',
   description: '',
   date: '',
   amount: ''
 })
-
 const emit = defineEmits(['save'])
 
 const onNewTransaction = () => {
@@ -48,13 +49,15 @@ const onNewTransaction = () => {
     return false
   }
 
+  console.log(spending.value)
+
   // send object "spending" to parents
   emit('save', spending.value)
 
   // reset input = 0
   spending.value = {
-    id: Math.floor(Math.random() * 100),
     description: '',
+    category: '',
     date: '',
     amount: ''
   }
