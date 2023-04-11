@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import type { Transaction } from '../entities/transaction'
+import { Category } from '@/entities/category'
 
 export const useTransactionStore = defineStore('transaction', function () {
   const transaction = ref<Transaction[]>([])
@@ -15,12 +16,17 @@ export const useTransactionStore = defineStore('transaction', function () {
     })
   }
 
+  const totalByCategory = (category: string) => {
+    let sum = BigInt(0)
+
+    for (let i = 0; i < transaction.value.length; i++) {
+      if (transaction.value[i].category == category) {
+        sum += BigInt(transaction.value[i].amount)
+      }
+    }
+    return sum
+  }
   const total = computed(() => {
-    // const value = transaction.value.reduce(
-    //   (acc, transaction) => acc + transaction.amount,
-    //   BigInt(0)
-    // )
-    // return value
     let total = BigInt(0) // Khởi tạo giá trị tổng ban đầu là 0 với kiểu BigInt
 
     for (let i = 0; i < transaction.value.length; i++) {
@@ -32,6 +38,7 @@ export const useTransactionStore = defineStore('transaction', function () {
   return {
     addTransaction,
     transaction,
-    total
+    total,
+    totalByCategory
   }
 })
