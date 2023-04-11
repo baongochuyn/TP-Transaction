@@ -14,8 +14,8 @@
     </div>
     <div>
       <select v-model="spending.category">
-        <option v-for="(cate, index) in categoryStore" :key="index" v-bind:value="cate">
-          {{ cate }}
+        <option v-for="(cate, index) in categoryStore" :key="index" v-bind:value="cate.name">
+          {{ cate.name }}
         </option>
       </select>
     </div>
