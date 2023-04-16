@@ -23,13 +23,13 @@ export const useTransactionStore = defineStore('transaction', function () {
       id: transaction.value.length === 0 ? 1 : Math.max(...transaction.value.map((t) => t.id)) + 1,
       categoryId: itemAdd.category,
       description: itemAdd.description,
-      date: convertDate(new Date(itemAdd.date)),
+      date: new Date(itemAdd.date),
       montant: BigInt(itemAdd.amount)
     })
     console.log(transaction.value)
   }
 
-  const totalByCategory = (category: string) => {
+  const totalByCategory = (category: number) => {
     let sum = BigInt(0)
 
     for (let i = 0; i < transaction.value.length; i++) {

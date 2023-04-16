@@ -14,11 +14,17 @@
         <td>{{ transaction.id }}</td>
         <td>{{ transaction.description }}</td>
         <td>{{ getCategoryById(transaction.categoryId) }}</td>
-        <td>{{ moment(String(transaction.date)).format('MM/DD/YYYY') }}</td>
-        <td>{{ transactionsStore.coverAmount(transaction.montant) }}</td>
+        <td>{{ moment(String(transaction.date)).format('DD/MM/YYYY') }}</td>
+        <td>{{ transactionStore.coverAmount(transaction.montant) }}</td>
       </tr>
     </tbody>
   </table>
+  <p>Solde du compte : {{ total }}</p>
+  <ul>
+    <li v-for="(item, index) in categoryStore.categories.value" :key="index">
+      {{ item.name }} : {{ transactionStore.totalByCategory(item.id) }} €
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
@@ -28,8 +34,8 @@ import { useTransactionStore } from '@/stores/transaction'
 import { useCategoryStore } from '@/stores/category'
 import moment from 'moment'
 
-const transactionsStore = useTransactionStore()
-const transactions = transactionsStore.transactions
+const transactionStore = useTransactionStore()
+const transactions = transactionStore.transactions
 
 const categoryStore = useCategoryStore()
 const categories = categoryStore.categories
@@ -37,7 +43,7 @@ const categories = categoryStore.categories
 if (transactions.value.length === 0) {
   await fetch('http://localhost:3000/transactions')
     .then((res) => res.json())
-    .then((data) => transactionsStore.setTransaction(data))
+    .then((data) => transactionStore.setTransaction(data))
   console.log(transactions.value)
   await fetch('http://localhost:3000/categories')
     .then((res) => res.json())
@@ -53,4 +59,5 @@ const getCategoryById = (id: number) => {
     }
   }
 }
+const total = transactionStore.total
 </script>
