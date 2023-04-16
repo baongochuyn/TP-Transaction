@@ -1,0 +1,14 @@
+{
+	"categories": [
+		{ "id": 1, "name": "Revenu" },
+		{ "id": 2, "name": "Alimentation" },
+		{ "id": 3, "name": "Habillement" }
+	],
+	"transactions": [
+		{ "id": 1, "description": "Salaire avril 2023", "date": "2023-04-01", "montant": 150000, "categoryId": 1 },
+		{ "id": 2, "description": "Aide au logement", "date": "2023-04-02", "montant": 10000, "categoryId": 1 },
+		{ "id": 3, "description": "Courses à Carrefour", "date": "2023-04-01", "montant": -4000, "categoryId": 2 },
+		{ "id": 4, "description": "McDonald's avec les copains", "date": "2023-04-04", "montant": -1100, "categoryId": 2 },
+		{ "id": 5, "description": "Chaussures de sport", "date": "2023-04-05", "montant": -12000, "categoryId": 3 }
+	]
+}

@@ -12,8 +12,15 @@ export const useCategoryStore = defineStore('category', function () {
     })
   }
 
+  const setCategory = (iCategory: any) => {
+    category.value = iCategory
+  }
+
+  const categories = computed(() => category)
+
   return {
-    category,
+    setCategory,
+    categories,
     addNewCategory
   }
 })

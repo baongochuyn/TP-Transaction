@@ -14,7 +14,7 @@
     </div>
     <div>
       <select v-model="spending.category">
-        <option v-for="(cate, index) in categoryStore" :key="index" v-bind:value="cate.name">
+        <option v-for="(cate, index) in categoryStore" :key="index" v-bind:value="cate.id">
           {{ cate.name }}
         </option>
       </select>
@@ -27,7 +27,7 @@
 import { ref } from 'vue'
 import { useCategoryStore } from '@/stores/category'
 
-const categoryStore = useCategoryStore().category
+const categoryStore = useCategoryStore().categories
 const spending = ref({
   category: '',
   description: '',
