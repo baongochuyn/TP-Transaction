@@ -9,6 +9,11 @@
 <script setup lang="ts"></script>
 
 <style>
+#app {
+  margin: auto;
+  align-content: center;
+  padding: 10px;
+}
 table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -25,5 +30,20 @@ table th {
   text-align: left;
   background-color: #4caf50;
   color: white;
+}
+#total {
+  color: red;
+}
+.btn {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 7px;
+  margin: 10px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <RouterLink to="/"><button>Annuler</button></RouterLink>
+  <RouterLink to="/"><button class="btn">Annuler</button></RouterLink>
   <Spending @save="onNewTransaction" />
 </template>
 

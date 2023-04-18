@@ -37,7 +37,7 @@ export const useTransactionStore = defineStore('transaction', function () {
         sum += BigInt(transaction.value[i].montant)
       }
     }
-    return sum
+    return coverAmount(sum)
   }
 
   const total = computed(() => {

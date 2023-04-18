@@ -3,8 +3,10 @@
   <Suspense>
     <TableTransaction />
   </Suspense>
-  <RouterLink to="/new-transaction"><button>Ajouter une transaction</button></RouterLink>
-  <RouterLink to="/new-category"><button>Ajouter une catégory</button></RouterLink>
+  <RouterLink to="/new-transaction"
+    ><button class="btn">Ajouter une transaction</button></RouterLink
+  >
+  <RouterLink to="/new-category"><button class="btn">Ajouter une catégory</button></RouterLink>
 </template>
 
 <script setup lang="ts">

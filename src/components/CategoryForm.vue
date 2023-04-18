@@ -6,7 +6,7 @@
         <label>Name :</label>
         <input type="text" v-model="name" />
       </div>
-      <input type="submit" value="Ajouter" />
+      <input class="btn" type="submit" value="Ajouter" />
     </fieldset>
   </form>
 </template>
@@ -21,3 +21,5 @@ const onSubmit = () => {
   name.value = ''
 }
 </script>
+
+<style scoped></style>

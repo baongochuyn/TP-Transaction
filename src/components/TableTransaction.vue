@@ -19,10 +19,10 @@
       </tr>
     </tbody>
   </table>
-  <p>Solde du compte : {{ total }}</p>
+  <p id="total">Solde du compte : {{ total }}</p>
   <ul>
     <li v-for="(item, index) in categoryStore.categories.value" :key="index">
-      {{ item.name }} : {{ transactionStore.totalByCategory(item.id) }} €
+      {{ item.name }} : {{ transactionStore.totalByCategory(item.id) }}
     </li>
   </ul>
 </template>
@@ -54,10 +54,9 @@ if (transactions.value.length === 0) {
 const getCategoryById = (id: number) => {
   for (let i = 0; i < categories.value.length; i++) {
     if (categories.value[i].id == id) {
-      console.log(id)
       return categories.value[i].name
     }
   }
 }
-const total = transactionStore.total
+const total = transactionStore.coverAmount(transactionStore.total)
 </script>
