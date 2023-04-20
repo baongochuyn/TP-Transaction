@@ -12,6 +12,7 @@ import { ref } from 'vue'
 const transactionStore = useTransactionStore()
 
 const onNewTransaction = (itemAdd: any) => {
+  itemAdd.amount = itemAdd.amount * 100
   transactionStore.addTransaction(itemAdd)
   router.push('/')
 }

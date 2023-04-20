@@ -15,7 +15,8 @@ export const useTransactionStore = defineStore('transaction', function () {
     return Intl.DateTimeFormat('fr-FR').format(date)
   }
   const coverAmount = (amount: bigint) => {
-    return Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(amount)
+    const res = Number(amount) / 100
+    return Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(res)
   }
   const addTransaction = (itemAdd: any) => {
     console.log(itemAdd)
